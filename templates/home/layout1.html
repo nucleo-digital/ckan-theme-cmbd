@@ -45,8 +45,10 @@
     <div class="row row2">
       {% for organization in h.get_featured_organizations(-1) %}
         <div class="span2 gu">
-          <a href="{{ h.url_for('organization_read', action='read', id=organization.title) }}">
-            <div class="gu-logo"><img src="/images/logos/CGM.png" alt="{{organization.title}}"></div>
+          <a href="{{ h.url_for('organization_read', action='read', id=organization.name) }}">
+            <div class="gu-logo">
+              <img src="/images/logos/{{organization.name}}.png" alt="{{organization.title}}">
+            </div>
             <div class="gu-name">{{organization.title}}</div>
           </a>
         </div>
