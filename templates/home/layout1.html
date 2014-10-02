@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row row1">
+    <h1 class="cmbd-welcome">Bem-vindo ao Catálogo Municipal de Bases de Dados de São Paulo. O catálogo é uma listagem de todas as bases de dados produzidas pelos órgãos e entidades da prefeitura de São Paulo.</h1>
+  </div>
+  <div class="row row2">
+    <form class="cmbd-welcomesearch module-content search-form" method="get" action="{% url_for controller='package', action='search' %}">
+        <h3 class="heading">&bullet; Busque a base de dados &bullet;</h3>
+        <div class="search-input control-group search-giant span8">
+          <input type="text" class="search" name="q" value="" autocomplete="off" placeholder="ex.: Equipamentos educacionais na Zona Leste" />
+          <button type="submit">
+            <i class="icon-search"></i>
+            <span>{{ _('Search') }}</span>
+          </button>
+        </div>
+      </form>
+  </div>
+</div>
+
+<div role="main" class="hero">
+  <div class="container">
+    <div class="row row1">
+      <div class="span12 col1">
+        <center>
+          <h3>&bullet; Explore os temas &bullet;</h3>
+        </center>
+      </div>
+    </div>
+    <div class="row row2">
+      <div class="span12 col1">
+      {% for group in h.get_featured_groups(-1) %}
+        <a href="{{ h.url_for('group_read', action='read', id=group.title) }}">{{group.title}}</a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div role="main" class="gus">
+  <div class="container">
+    <div class="row row1">
+      <center>
+        <h3>&bullet; Procure por Unidades &bullet;</h3>
+      </center>
+    </div>
+    <div class="row row2">
+      {% for organization in h.get_featured_organizations(-1) %}
+        <div class="span2 gu">
+          <a href="{{ h.url_for('organization_read', action='read', id=organization.title) }}">
+            <div class="gu-logo"><img src="/images/logos/CGM.png" alt="{{organization.title}}"></div>
+            <div class="gu-name">{{organization.title}}</div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

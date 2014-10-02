@@ -1,0 +1,49 @@
+<footer class="site-footer">
+  <div class="container">
+    {% block footer_content %}
+      <nav class="footer-links">
+        {% block footer_nav %}
+          <div class="footer-block">
+            <h3>Saiba mais</h3>
+            <ul class="unstyled">
+              {% block footer_links %}
+                <li><a href="{{ h.url_for(controller='home', action='about') }}">Sobre o Portal</a></li>
+                <li><a href="http://cmbd.saopauloaberta.prefeitura.sp.gov.br/">O que são dados abertos?</a></li>
+                <li><a href="http://cmbd.saopauloaberta.prefeitura.sp.gov.br/">Lei de acesso à informação</a></li>
+                <li><a href="http://cmbd.saopauloaberta.prefeitura.sp.gov.br/">Parceria para Governo Aberto</a></li>
+                <li><a href="http://cmbd.saopauloaberta.prefeitura.sp.gov.br/">Open Data Commons</a></li>
+              {% endblock %}
+            </ul>
+          </div>
+          <div class="footer-block">
+            <ul class="unstyled">
+              {% block footer_links_ckan %}
+                {% set api_url = 'http://docs.ckan.org/en/{0}/api/'.format(g.ckan_doc_version) %}
+                {% block footer_attribution %}
+                  <li class="footer-link-simple">
+                    {% trans %}
+                      Impulsionado por <a class="hide-text ckan-footer-logo" href="http://ckan.org">CKAN</a> <a href="http://www.opendefinition.org/okd/"><img src="//assets.okfn.org/images/ok_buttons/od_80x15_blue.png"></a>
+                    {% endtrans %}
+                  </li>
+                {% endblock %}
+                <li><a href="{{ api_url }}">Sobre a API</a></li>
+                <li><a href="http://www.okfn.org/">{{ _('Open Knowledge Foundation') }}</a></li>
+              {% endblock %}
+            </ul>
+          </div>
+        {% endblock %}
+      </nav>
+      <div class="attribution footer-block">
+        {% block footer_lang %}
+          {% snippet "snippets/language_selector.html" %}
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </div>
+
+  {% block footer_debug %}
+    {% if g.debug %}
+      {% include 'snippets/debug.html' %}
+    {% endif %}
+  {% endblock %}
+</footer>
