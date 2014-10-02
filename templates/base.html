@@ -113,5 +113,22 @@
       {# defined in the config.ini under "ckan.template_footer_end" #}
       {{ g.template_footer_end | safe }}
     {%- endblock %}
+
+    <script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+    <script>
+      (function ($) {
+        $(function () {
+          var unitsToHide = $('.gus .gu:nth-child(n+13)');
+
+          unitsToHide.hide();
+          $('.gus-show-all').click(function (ev) {
+            ev.preventDefault();
+
+            unitsToHide.show();
+            $(this).hide();
+          });
+        });
+      })(jQuery);
+    </script>
   </body>
 </html>
