@@ -26,11 +26,20 @@
       </div>
     </div>
     <div class="row row2">
-      <div class="span12 col1">
-      {% for group in h.get_featured_groups(-1) %}
-        <a href="{{ h.url_for('group_read', action='read', id=group.title) }}">{{group.title}}</a>
-      {% endfor %}
-      </div>
+      <center>
+        {% for group in h.get_featured_groups(-1) %}
+          <div class="grouptag">
+            <a href="{{ h.url_for('group_read', action='read', id=group.name) }}">
+              <div class="grouptag-icon">
+                <img src="/images/tags/{{group.name}}.png" alt="{{group.title}}">
+              </div>
+              <div class="grouptag-name">
+                {{group.title}}
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </center>
     </div>
   </div>
 </div>
